@@ -1,31 +1,34 @@
-import SubmitButton from './SubmitButton';
+import { useState } from "react";
+import TonicInput from "./TonicInput";
+import AccidentalSelect from "./AccidentalSelect";
+import QualitySelect from "./QualitySelect";
 
-function KeyForm() {
-   return (
-      <form action="index.html" method="post">
-         <h3 htmlFor="chordInput">What key is our music in?</h3>
-         <input id="chordInput" type="text" placeholder="Letter Name" />
+function KeyForm({ setFullTonic }) {
+  const [tonic, setTonic] = useState("");
+  const [accidental, setAccidental] = useState("natural");
+  const [quality, setQuality] = useState(true);
 
-         <div className="quality-select">
-            <label htmlFor="accidentalSelect">Accidental</label>
-            <select id="accidentalSelect" name="accidental-select">
-               <option value="natural">&#9838;</option>
-               <option value="sharp">&#9839;</option>
-               <option value="flat">&#9837;</option>
-            </select>
-         </div>
+  function onFormChange(e) {
+    e.preventDefault();
 
-         <div className="quality-select">
-            <label htmlFor="qualitySelect">Quality</label>
-            <select id="qualitySelect" name="type-select">
-               <option value="Major">Major</option>
-               <option value="minor">minor</option>
-            </select>
-         </div>
+    setFullTonic({ tonic, accidental, quality });
+  }
 
-         <SubmitButton textContent='Start Suggestions' />
-      </form>
-   )
+  return (
+    <form onSubmit={onFormChange}>
+      <TonicInput
+        value={tonic}
+        onChange={(e) => setTonic(e.currentTarget.value)}
+      />
+      <AccidentalSelect
+        value={accidental}
+        onChange={(e) => setAccidental(e.target.value)}
+      />
+      <QualitySelect value={quality} onChange={() => setQuality(!quality)} />
+      <button>Start Suggestions</button>
+      <p>{tonic}</p>
+    </form>
+  );
 }
 
 export default KeyForm;

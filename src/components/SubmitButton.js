@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
 
-function SubmitButton({ textContent }) {
+function SubmitButton({ onSubmit }) {
    return (
-      <div>
-         <button>{textContent}</button>
-      </div>
+      <button onClick={onSubmit}>Start Suggestions</button>
    )
 }
 

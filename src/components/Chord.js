@@ -1,6 +1,8 @@
 function Chord() {
    return (
-      
+      <button>
+         
+      </button>
    )
 }
 

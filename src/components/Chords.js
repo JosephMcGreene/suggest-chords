@@ -2,7 +2,9 @@ import Chord from './Chord';
 
 function Chords() {
    return (
-      
+      <main>
+         <Chord />
+      </main>
    )
 }
 
